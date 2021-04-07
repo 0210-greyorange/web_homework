@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script language="JavaScript">
+
+        //定义全局变量
+        var n1 = '',
+            n2 = '';
+        var item1_flag = true;
+        var opr_type = '+';
+
+        function SetVal(item) {
+            document.Cal.OutText.value += item;
+            if (item1_flag)
+                n1 += item;
+            else
+                n2 += item;
+            return document.Cal.OutText.value;
+        }
+
+        function SetOpr(opr) {
+            document.Cal.OutText.value += opr;
+            item1_flag = false;
+            opr_type = opr;
+        }
+
+        function Clear() {
+            document.Cal.OutText.value = "";
+            item1_flag = true;
+            opr_type = '+';
+            n1 = " ";
+            n2 = " ";
+        }
+
+        function Compute(obj) {
+            var Result;
+            if ((n1 != '') && (n2 != '')) {
+                if ((eval(n2) == 0) && (opr_type == '/')) {
+                    alert('除数不能是0！');
+                    Clear();
+                    return;
+                } else {
+                    Result = eval(obj.OutText.value);
+                    // document.Cal.OutText.value += '='; //去除掉Cal的OutText框里显示“=”，即可做连续运算
+                    document.Cal.OutText.value = Result;
+                }
+            }
+        }
+
+        document.onkeydown = function(e){
+            if(e.keyCode == 13){
+                e.preventDefault();  //去掉默认事件的发生，避免回车导致数字连续被点击
+                Compute(Cal);
+            }
+        }
+    </script>
+</head>
+
+<body class="body-flex">
+    <form name="Cal">
+        <div class="up">
+            <input type="text" class="text" value="" name="OutText">
+        </div>
+        <div class="down">
+            <div class="left">
+                <input type="button" class="button" value="CE" onclick="Clear()">
+                <input type="button" class="button" value=" 0 " onclick="SetVal('0')">
+                <input type="button" class="button" value=" = " onclick="Compute(this.form)">
+                <input type="button" class="button" value=" 1 " onclick="SetVal('1')">
+                <input type="button" class="button" value=" 2 " onclick="SetVal('2')">
+                <input type="button" class="button" value=" 3 " onclick="SetVal('3')">
+                <input type="button" class="button" value=" 4 " onclick="SetVal('4')">
+                <input type="button" class="button" value=" 5 " onclick="SetVal('5')">
+                <input type="button" class="button" value=" 6 " onclick="SetVal('6')">
+                <input type="button" class="button" value=" 7 " onclick="SetVal('7')">
+                <input type="button" class="button" value=" 8 " onclick="SetVal('8')">
+                <input type="button" class="button" value=" 9 " onclick="SetVal('9')">
+            </div>
+            <div class="right">
+                <input type="button" class="button" value=" + " onclick="SetOpr('+')">
+                <input type="button" class="button" value=" - " onclick="SetOpr('-')">
+                <input type="button" class="button" value=" * " onclick="SetOpr('*')">
+                <input type="button" class="button" value=" / " onclick="SetOpr('/')">
+            </div>
+    </form>
+        </div>
+</body>
+
+</html>
