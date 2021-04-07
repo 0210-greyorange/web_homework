@@ -1,0 +1,53 @@
+ .HolyGrail {
+   display: flex;
+   min-height: 96vh;
+   flex-direction: column;
+   background: url(背景图1.jpg);
+   background-size: cover;
+ }
+
+ .header {
+   /* margin-top: -16px; */
+   /* padding-top: 0%; */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+
+ .HolyGrail-body {
+   display: flex;
+   flex: 1;
+ }
+
+ .HolyGrail-content {
+   margin-top: 2%;
+   margin-left: 3%;
+   display: flex;
+   flex: 1;
+ }
+
+ .HolyGrail-nav {
+   margin-top: 2%;
+   flex: 0 0 16%;
+   order: -1;
+   border-style: none solid none none;
+   border-color: skyblue;
+ }
+
+ li {
+   color: white;
+   font-family: "华文行楷";
+   font-size: 200%;
+   margin-top: 15%;
+   list-style: none;
+ }
+
+ nav a:link,
+ nav a:visited{
+   color: black;
+ }
+
+ nav a:hover {
+   color: black;
+   background-color: white;
+ }
