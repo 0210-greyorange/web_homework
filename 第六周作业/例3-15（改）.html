@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象示例</title>
+    <script type="text/javascript">
+        function confSubmit() {
+            var comfirmObj = document.getElementById("confirmDiv");
+            comfirmObj.style.display = "none";
+            var nw = open("a.html", "nwin", "width=500, height=200, toolbar=1");
+            nw.focus;
+            nw.document.write("您的名字是：" + document.getElementById("name").value);
+            nw.document.write("<br>");
+            nw.document.write("您的电话号码是：" + document.getElementById("phone").value);
+        }
+
+        function okFunc() {
+            var comfirmObj = document.getElementById("confirmDiv");
+            comfirmObj.style.display = "block";
+        }
+
+        function cancelFunc() {
+            var comfirmObj = document.getElementById("confirmDiv");
+            comfirmObj.style.display = "none";
+            var reInputObj = document.getElementById("reInputDiv");
+            reInputObj.style.display = "block";
+            var reInputOkObj = document.getElementById("reInputOk");
+            reInputOkObj.onclick = function reInputOkFunc() {
+                reInputObj.style.display = "none";
+                document.getElementById("name").value = " ";
+                document.getElementById("phone").value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>defaultStatus = "这是一个window对象使用示例。"</script>
+<center>
+    <h1>window使用示例一</h1>
+</center>
+<hr>
+<br>
+<!--<form name="input_form">-->
+<h2>
+    请输入您的姓名： <input type="text" id="name" size="12" value=" "><br><br>
+    请输入您的电话号码： <input type="text" id="phone" size="12"><br><br>
+    &nbsp;&nbsp;<input type="submit" id="subbtn" value="确定" onclick="okFunc()">
+</h2>
+<div id="confirmDiv" style="display: none; background-color: aqua; width: 200px ">
+    <h4>您确定输入正确吗？</h4>
+    <button onclick="confSubmit()">确定</button>
+    <button onclick="cancelFunc()">取消</button>
+</div>
+<div id="reInputDiv" style="display: none; background-color: beige; width: 200px ">
+    <h4 style="color: red">请您重新输入！</h4>
+    <button id="reInputOk">确定</button>
+</div>
+<!--</form>-->
+</body>
+</html>
