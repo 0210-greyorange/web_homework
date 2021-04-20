@@ -3,29 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>对象示例</title>
+    <style>
+        .confirm1 {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 30%;
+            width: 300px;
+            height: 100px;
+            border: 3px solid black;
+            background-color: white;
+            z-index: 1002;
+            text-align: center;
+        }
+
+        .output {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 30%;
+            width: 300px;
+            height: 150px;
+            border: 3px solid black;
+            background-color: white;
+            z-index: 1002;
+            text-align: center;
+        }
+
+        .shelter {
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.6;
+            z-index: 1001
+        }
+
+    </style>
     <script type="text/javascript">
         function confSubmit() {
-            var comfirmObj = document.getElementById("confirmDiv");
-            comfirmObj.style.display = "none";
-            var nw = open("a.html", "nwin", "width=500, height=200, toolbar=1");
-            nw.focus;
-            nw.document.write("您的名字是：" + document.getElementById("name").value);
-            nw.document.write("<br>");
-            nw.document.write("您的电话号码是：" + document.getElementById("phone").value);
+            document.getElementById("confirmDiv").style.display = "none";
+            var reOutputObj = document.getElementById("output");
+            reOutputObj.style.display = "block";
+            document.getElementById("out_name").innerHTML = "您的名字是：" + document.getElementById("name").value;
+            document.getElementById("out_phone").innerHTML = "您的电话号码是：" + document.getElementById("phone").value;
+            var reOutputOkObj = document.getElementById("reOutputOk");
+            reOutputOkObj.onclick = function reOutputOkFunc() {
+                document.getElementById("shelter").style.display = "none";
+                reOutputObj.style.display = "none";
+                document.getElementById("name").value = " ";
+                document.getElementById("phone").value = "";
+            }
         }
 
         function okFunc() {
-            var comfirmObj = document.getElementById("confirmDiv");
-            comfirmObj.style.display = "block";
+            document.getElementById("confirmDiv").style.display = "block";
+            document.getElementById("shelter").style.display = "block";
         }
 
         function cancelFunc() {
-            var comfirmObj = document.getElementById("confirmDiv");
-            comfirmObj.style.display = "none";
+            document.getElementById("confirmDiv").style.display = "none";
             var reInputObj = document.getElementById("reInputDiv");
             reInputObj.style.display = "block";
             var reInputOkObj = document.getElementById("reInputOk");
             reInputOkObj.onclick = function reInputOkFunc() {
+                document.getElementById("shelter").style.display = "none";
                 reInputObj.style.display = "none";
                 document.getElementById("name").value = " ";
                 document.getElementById("phone").value = "";
@@ -34,27 +79,31 @@
     </script>
 </head>
 <body>
-    <script>defaultStatus = "这是一个window对象使用示例。"</script>
-<center>
-    <h1>window使用示例一</h1>
-</center>
-<hr>
 <br>
 <!--<form name="input_form">-->
-<h2>
-    请输入您的姓名： <input type="text" id="name" size="12" value=" "><br><br>
-    请输入您的电话号码： <input type="text" id="phone" size="12"><br><br>
-    &nbsp;&nbsp;<input type="submit" id="subbtn" value="确定" onclick="okFunc()">
-</h2>
-<div id="confirmDiv" style="display: none; background-color: aqua; width: 200px ">
-    <h4>您确定输入正确吗？</h4>
-    <button onclick="confSubmit()">确定</button>
-    <button onclick="cancelFunc()">取消</button>
-</div>
-<div id="reInputDiv" style="display: none; background-color: beige; width: 200px ">
-    <h4 style="color: red">请您重新输入！</h4>
-    <button id="reInputOk">确定</button>
-</div>
+    <h2>
+        请输入您的姓名： <input type="text" id="name" size="12" value=" "><br><br>
+        请输入您的电话号码： <input type="text" id="phone" size="12"><br><br>
+        &nbsp;&nbsp;<input type="submit" id="subbtn" value="确定" onclick="okFunc()">
+    </h2>
+
+    <div id="confirmDiv" class="confirm1">
+        <h4>您确定输入正确吗？</h4>
+        <button onclick="confSubmit()">确定</button>
+        <button onclick="cancelFunc()">取消</button>
+    </div>
+
+    <div id="reInputDiv" class="confirm1">
+        <h4 style="color: #ff0000">请您重新输入！</h4>
+        <button id="reInputOk">确定</button>
+    </div>
+
+    <div id="output" class="output">
+        <h5 id="out_name"></h5>
+        <h5 id="out_phone"></h5>
+        <button id="reOutputOk">确定</button>
+    </div>
+    <div id="shelter" class="shelter"></div>
 <!--</form>-->
 </body>
 </html>
